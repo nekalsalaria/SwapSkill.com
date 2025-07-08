@@ -26,7 +26,7 @@ const Login = () => {
       console.log("🚀 Sending:", { email: trimmedEmail, password: trimmedPassword });
 
       const res = await axios.post(
-        "https://swapskill-com.onrender.com/api/auth/login",
+        "http://localhost:5000/api/auth/login",
         {
           email: trimmedEmail,
           password: trimmedPassword,

@@ -27,7 +27,7 @@ const EditProfile = () => {
     const fetchRequests = async () => {
       try {
         const res = await axios.get(
-          "https://swapskill-com.onrender.com/api/user/myrequests",
+          "http://localhost:5000/api/user/myrequests",
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -46,7 +46,7 @@ const EditProfile = () => {
     e.preventDefault();
     try {
       const res = await axios.put(
-        "https://swapskill-com.onrender.com/api/auth/update",
+        "http://localhost:5000/api/auth/update",
         { name, canTeach, wantToLearn },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -67,7 +67,7 @@ const EditProfile = () => {
   const handleAccept = async (id) => {
     try {
       const res = await axios.post(
-        "https://swapskill-com.onrender.com/api/user/accept",
+        "http://localhost:5000/api/user/accept",
         { requestId: id },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -84,7 +84,7 @@ const EditProfile = () => {
   const handleDecline = async (id) => {
     try {
       await axios.post(
-        "https://swapskill-com.onrender.com/api/user/decline",
+        "http://localhost:5000/api/user/decline",
         { requestId: id },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -99,7 +99,7 @@ const EditProfile = () => {
   const handleDeleteAcceptedRequest = async (id) => {
     try {
       await axios.post(
-        "https://swapskill-com.onrender.com/api/user/delete-accepted",
+        "http://localhost:5000/api/user/delete-accepted",
         { requestId: id },
         { headers: { Authorization: `Bearer ${token}` } }
       );

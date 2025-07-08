@@ -24,7 +24,7 @@ const Signup = () => {
     e.preventDefault();
 
     try {
-      const res = await axios.post("https://swapskill-com.onrender.com/api/auth/signup", formData);
+      const res = await axios.post("http://localhost:5000/api/auth/signup", formData);
 
       const { token, user } = res.data;
 
