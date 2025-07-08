@@ -11,8 +11,26 @@ connectDB();
 
 const app = express();
 
-app.use(cors());
-app.use(express.json()); // ✅ Required to parse JSON body
+// ✅ Fix CORS for frontend on Render
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://swapskill-com1.onrender.com", // ✅ frontend deployed domain
+];
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+  })
+);
+
+app.use(express.json());
 
 // Routes
 app.use("/api/auth", authRoutes);
