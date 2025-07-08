@@ -18,7 +18,7 @@ const ChatPage = () => {
     const fetchMessages = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5000/api/user/get-messages/${toUserId}`,
+          `https://swapskill-com.onrender.com/api/user/get-messages/${toUserId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -39,7 +39,7 @@ const ChatPage = () => {
     if (!text.trim()) return;
     try {
       await axios.post(
-        "http://localhost:5000/api/user/send-message",
+        "https://swapskill-com.onrender.com/api/user/send-message",
         {
           toUserId,
           text,
