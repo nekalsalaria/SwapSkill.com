@@ -83,7 +83,7 @@ router.get("/myrequests", verifyToken, async (req, res) => {
 // 🔹 Accept a request
 router.post("/accept", verifyToken, async (req, res) => {
   try {
-    const user = await User.findById(req.user.userId);
+    const user = await User.findById(req.user.userId); // B (accepting user)
     const { requestId } = req.body;
 
     const requestToAccept = user.requests.id(requestId);
@@ -91,9 +91,19 @@ router.post("/accept", verifyToken, async (req, res) => {
       return res.status(404).json({ error: "Request not found" });
     }
 
+    // Remove from pending & add to accepted
     user.requests.pull(requestId);
     user.acceptedRequests.push(requestToAccept);
     await user.save();
+
+    // Also push into sender's acceptedRequests list
+    const senderUser = await User.findById(requestToAccept.from); // A (who sent the request)
+    senderUser.acceptedRequests.push({
+      from: user._id,
+      skill: requestToAccept.skill,
+      type: requestToAccept.type === "learn" ? "teach" : "learn", // reverse type
+    });
+    await senderUser.save();
 
     res.status(200).json({ message: "Request accepted successfully" });
   } catch (err) {
@@ -101,6 +111,7 @@ router.post("/accept", verifyToken, async (req, res) => {
     res.status(500).json({ error: "Failed to accept request" });
   }
 });
+
 
 // 🔹 Decline a request
 router.post("/decline", verifyToken, async (req, res) => {
