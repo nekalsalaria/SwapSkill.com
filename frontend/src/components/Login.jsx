@@ -10,6 +10,7 @@ const Login = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false); // ✅ optional UX improvement
 
   const handleLogin = async () => {
     const trimmedEmail = email.trim();
@@ -20,13 +21,23 @@ const Login = () => {
       return;
     }
 
+    setLoading(true);
     try {
       console.log("🚀 Sending:", { email: trimmedEmail, password: trimmedPassword });
 
-      const res = await axios.post("https://swapskill-com.onrender.com/api/auth/login", {
-        email: trimmedEmail,
-        password: trimmedPassword,
-      });
+      const res = await axios.post(
+        "https://swapskill-com.onrender.com/api/auth/login",
+        {
+          email: trimmedEmail,
+          password: trimmedPassword,
+        },
+        {
+          withCredentials: true, // ✅ for cookies or session-based CORS
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       const { token, user } = res.data;
 
@@ -39,6 +50,8 @@ const Login = () => {
     } catch (err) {
       console.error("❌ Login error:", err);
       alert(err.response?.data?.error || "Login failed. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -65,9 +78,12 @@ const Login = () => {
 
         <button
           onClick={handleLogin}
-          className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition"
+          disabled={loading}
+          className={`w-full ${
+            loading ? "bg-blue-400" : "bg-blue-600 hover:bg-blue-700"
+          } text-white py-2 rounded-lg transition`}
         >
-          Login
+          {loading ? "Logging in..." : "Login"}
         </button>
 
         <div className="text-center mt-4 text-sm text-gray-600">
