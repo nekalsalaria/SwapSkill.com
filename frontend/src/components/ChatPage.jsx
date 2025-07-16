@@ -113,7 +113,7 @@ const ChatPage = () => {
         </div>
 
         {/* Input Box */}
-        <div className="flex items-center gap-2">
+        <div className="flex flex-col sm:flex-row items-stretch gap-2">
           <input
             value={text}
             onChange={(e) => setText(e.target.value)}
@@ -122,7 +122,7 @@ const ChatPage = () => {
           />
           <button
             onClick={handleSend}
-            className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700"
+            className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 w-full sm:w-auto"
           >
             Send
           </button>
