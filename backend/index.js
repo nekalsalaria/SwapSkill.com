@@ -14,7 +14,7 @@ const app = express();
 // ✅ Fix CORS for frontend on Render
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://swapskill-com1.onrender.com", // ✅ frontend deployed domain
+  "https://swapskill-com-1.onrender.com", // ✅ frontend deployed domain
 ];
 
 app.use(
