@@ -84,7 +84,7 @@ const ChatPage = () => {
       </div>
 
       {/* Chat Box */}
-      <div className="max-w-2xl mx-auto bg-white rounded-xl shadow p-4 min-h-[300px] flex flex-col justify-between">
+      <div className="max-w-xl mx-auto bg-white rounded-xl shadow p-4 min-h-[300px] flex flex-col justify-between">
         <div className="overflow-y-auto max-h-[300px] mb-4">
           {messages.length === 0 ? (
             <p className="text-gray-400">No messages yet</p>
