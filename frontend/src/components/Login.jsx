@@ -18,7 +18,7 @@ const Login = () => {
     setLoading(true); setError("");
     try {
       const res = await axios.post(
-        "https://swapskill-com.onrender.com/api/auth/login",
+        "https://swapskill-com-p5du.onrender.com/api/auth/login",
         { email: email.trim(), password: password.trim() },
         { withCredentials: true }
       );

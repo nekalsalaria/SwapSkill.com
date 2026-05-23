@@ -88,7 +88,7 @@ const Signup = () => {
 
     try {
       const res = await axios.post(
-        "https://swapskill-com.onrender.com/api/auth/signup",
+        "https://swapskill-com-p5du.onrender.com/api/auth/signup",
         form,
         //  "http://localhost:5000/api/auth/signup"
       );

@@ -25,7 +25,7 @@ import {
 } from "react-icons/fa";
 
 // const API = "http://localhost:5000";
-const API = "https://swapskill-com.onrender.com";
+const API = "https://swapskill-com-p5du.onrender.com";
 
 const skillOptions = [
   { value: "DSA", label: "DSA" },

@@ -354,7 +354,7 @@ const ChatPanel = ({ toUserId, toUserName, token, currentUser }) => {
     (async () => {
       try {
         const res = await axios.get(
-          `https://swapskill-com.onrender.com/api/user/get-messages/${toUserId}`,
+          `https://swapskill-com-p5du.onrender.com/api/user/get-messages/${toUserId}`,
           { headers: { Authorization: `Bearer ${token}` } }
         );
         setMessages(res.data.messages || []);
@@ -378,7 +378,7 @@ const ChatPanel = ({ toUserId, toUserName, token, currentUser }) => {
     if (!text.trim()) return;
     try {
       await axios.post(
-        "https://swapskill-com.onrender.com/api/user/send-message",
+        "https://swapskill-com-p5du.onrender.com/api/user/send-message",
         { toUserId, text },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -476,7 +476,7 @@ const ChatPage = () => {
     if (!rating) return;
     try {
       await axios.post(
-        "https://swapskill-com.onrender.com/api/user/rate-user",
+        "https://swapskill-com-p5du.onrender.com/api/user/rate-user",
         { mentorId: toUserId, rating },
         { headers: { Authorization: `Bearer ${token}` } }
       );

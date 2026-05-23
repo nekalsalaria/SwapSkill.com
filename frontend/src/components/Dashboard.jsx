@@ -36,7 +36,7 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const API = "https://swapskill-com.onrender.com";
+const API = "https://swapskill-com-p5du.onrender.com";
 
 /* ─── Avatar initials ─────────────────────────────────── */
 const Avatar = ({ name, size = 38, border = "var(--accent)" }) => (
